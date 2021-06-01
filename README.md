@@ -1,1 +1,1 @@
-# graph-coloring
+# coloracao-grafos
