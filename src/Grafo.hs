@@ -70,9 +70,13 @@ coloreVérticesIngênuo grafo listaVértices = resultado
         cores = criaListaCores grafo
         resultado = percorreCores grafo listaVértices cores []
 
-g42 = novoGrafo 10 [(1,2),(1,5),(5,2),(5,8),(5,6),(5,3),(2,6),(2,3),(5,9),(6,9),(6,7),(6,4),(3,4),(3,7),(6,3),(4,7),(9,7),(9,10)]
---g42 = novoGrafo 10 [(1,2),(1,3),(2,4),(3,5),(4,5),(1,6),(2,7),(3,8),(4,9),(5,10),(6,9),(6,10),(7,8),(7,10),(8,9)] -- Grafo de Petersen
-xs = vértices g42
+--exampleGraph = novoGrafo 10 [(1,2),(1,3),(2,4),(3,5),(4,5),(1,6),(2,7),(3,8),(4,9),(5,10),(6,9),(6,10),(7,8),(7,10),(8,9)] -- Grafo de Petersen (Primeiro grafo)
+--exampleGraph = novoGrafo 7 [(1,2),(1,3),(1,5),(1,7),(2,4),(2,3),(2,5),(2,6),(3,6),(3,7),(3,5),(4,6),(4,5),(4,7),(5,7),(6,7)] -- (Segundo grafo)
+--exampleGraph = novoGrafo 6 [(1,2),(1,3),(1,4),(1,5),(2,3),(2,4),(2,6),(3,5),(3,6),(4,5),(4,6),(5,6)] -- (Terceiro grafo)
+--exampleGraph = novoGrafo 13 [(1,2),(1,5),(1,6),(2,6),(2,7),(2,3),(3,7),(3,4),(3,8),(4,8),(4,9),(4,13),(5,6),(5,10),(6,10),(6,11),(7,11),(7,12),(8,12),(8,13),(9,13),(10,11),(11,12),(12,13)] -- (Quarto grafo)
+exampleGraph = novoGrafo 17 [(1,2),(1,5),(2,5),(2,6),(3,6),(3,7),(3,4),(4,7),(5,6),(5,8),(5,9),(6,7),(6,9),(7,9),(7,10),(8,9),(8,11),(9,10),(9,11),(9,12),(9,13),(10,13),(11,14),(11,12),(11,16),(12,13),(12,16),(12,17),(13,15),(13,17),(14,16),(15,17)] -- Quinto grafo
+
+xs = vértices exampleGraph
 
 pegaTamanhoCromático x = length(nub(map snd x))
 
@@ -80,10 +84,10 @@ principal :: IO ()
 principal = do
     start <- getCurrentTime
 
-    let verticesGrafo = (vértices g42)
+    let verticesGrafo = (vértices exampleGraph)
     resultadoVerticesEmbaralhados <- shuffleM verticesGrafo
         
-    let resultadoGrafoColorido = (coloreVérticesIngênuo g42 resultadoVerticesEmbaralhados)
+    let resultadoGrafoColorido = (coloreVérticesIngênuo exampleGraph resultadoVerticesEmbaralhados)
 
     let numeroCromatico = pegaTamanhoCromático resultadoGrafoColorido
 
@@ -91,7 +95,7 @@ principal = do
 
     putStrLn("------------------------")
     putStrLn("Arestas do grafo: ")
-    print $ (arestas g42)
+    print $ (arestas exampleGraph)
     putStrLn("------------------------")
     putStrLn("Vértices embaralhados: ")
     print $ resultadoVerticesEmbaralhados
